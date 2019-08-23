@@ -47,11 +47,11 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           login(this.loginForm)
-            .then((res) => {
-              console.log(res)
+            .then(res => {
+              // console.log(res)
               if (res.data.meta.status === 200) {
-                this.localStorage.getItem('loginIndex', res.data.data.token)
-                this.$router.push({ name: 'login' })
+                localStorage.setItem('loginIndex', res.data.data.token)
+                this.$router.push({ name: 'home' })
               } else {
                 this.$message({
                   message: res.data.meta.msg,
@@ -59,11 +59,11 @@ export default {
                 })
               }
             })
-            .catch((err) => {
-              console.log(err)
+            .catch(() => {
+              // console.log(err)
               this.$message({
                 message: '服务器异常',
-                type: err
+                type: 'error'
               })
             })
         } else {
