@@ -4,8 +4,9 @@
       <el-aside width="auto">
         <div class="logo"></div>
         <el-menu
+          :router="true"
           :collapse="isShow"
-          :default-active="'1-1'"
+          :default-active="'1-3'"
           class="el-menu-vertical-demo"
           :unique-opened="true"
           background-color="#545c64"
@@ -18,7 +19,7 @@
               <span>{{items.authName}}</span>
             </template>
             <el-menu-item
-              :index="'/home/'+index.path"
+              :index="'/home/'+ item.path"
               v-for="(item,index) in items.children"
               :key="index"
             >
@@ -49,7 +50,7 @@ import { perm } from '@/api/permissions'
 export default {
   data () {
     return {
-      isShow: true,
+      isShow: false,
       menuList: []
     }
   },
